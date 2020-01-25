@@ -6,5 +6,5 @@ mongoose.connect('mongodb://localhost:27017/squarepayDB',{useNewUrlParser:true},
     if(!err){
         console.log('mongodb connected successfully!!'); 
     }
-    else{console.log('error in making a mongodb connectoin!'+err);}
+    else{console.log('error in making  mongodb connectoin!'+err);}
 });
