@@ -1,0 +1,215 @@
+<%-include('header')%>
+<%-include('navbar')%>
+<body>
+    <div class="spinner-grow text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-secondary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-warning" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-info" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-light" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-dark" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    
+  <br>
+  <div class="row">
+    <div class="col-lg-6">
+        <div class="input-group mb-3">
+            <!-- <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">@</span>
+            </div> -->
+            <input type="text" class="form-control" placeholder="search" id="search"aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+      </div>
+      <br>
+      <div class="col-lg-6">
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">select range</label>
+              </div>
+              <select class="custom-select" id="selectrange"> 
+                <option selected value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+              </select>
+            </div>
+        </div>
+  </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="modal2">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p><%-include('signupform')%></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalScrollableTitle">Update</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">@</span>
+                    </div>
+                    <input type="text" id="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                  </div>
+                  
+                  <div class="input-group mb-3">
+                    <input type="text" id="email" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon2">@example.com</span>
+                    </div>
+                  </div>
+
+                  <input type="text" name="phone" id="phone">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="btn">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    
+    <table class="table" style="border: 2px double rgb(0, 255, 213);background-color: beige ">
+        <thead>
+          <tr>
+            <th scope="col">Unique id</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mobile No</th>  
+            <th scope="col">Gender</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="appendable">
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-primary float-right" style="position: fixed;bottom:10px;right:10px;width: 120px;" onclick="showmodal()">Add user</button>
+      <nav aria-label="Page navigation example " class="float-left" >
+        <ul class="pagination justify-content-end" id="paging">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          <li class="page-item" val="1"><a class="page-link" href="#">1</a></li>
+          <li class="page-item" val="2"><a class="page-link" href="#">2</a></li>
+          <li class="page-item" val="3"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+      
+    </body>
+<script>
+  var val,page,search;
+  function showmodal(){
+    $('#modal2').modal('show')
+     $('#sbutton').click(()=>{
+      $('#modal2').modal('hide')
+     }); 
+  }
+function updateRec(data){
+  $('#myModal').modal('show')
+  $("#username").val(data.username)
+  $("#email").val(data.email)
+  $("#phone").val(data.mobileno)
+  $("#btn").click(function(){
+    $('#myModal').modal('hide')
+     var uname=$("#username").val()
+    var uemail=$("#email").val()
+    var umobileno=$("#phone").val()
+    $.post("/updateRec",{id:data._id,username:uname,email:uemail,mobileno:umobileno},(data,status)=>{
+      if(status=="success"){
+        console.log(data);
+        $('#username'+data._id).html(data.username);
+        $('#email'+data._id).html(data.email);
+        $('#mobileno'+data._id).html(data.mobileno);
+        console.log($('#username'+data._id).html(data.username));  
+        //location.reload(true);
+       }
+    });
+  });
+}
+
+  function deleteRec(id){
+    $("#"+id).hide()
+    $.post("/deleteRec",{id:id},(data)=>{
+      if(data=="success"){
+        notie.alert({position:"bottom",time:5,type:"success",text:"Account deleted Sucessfully"});
+        $('#myModal').modal('hide');
+      }
+    })
+  }
+  $('#selectrange').change((event)=>{
+      val=event.target.value;
+     d(val,page,search);
+    });
+    //d(5);
+    $('#paging').on('click','li',(event)=>{
+     page=event.target.innerText;
+     d(val,page,search);
+    })
+    $('#search').on('input',(event)=>{
+      search=event.target.value;
+      $("#search").css("color", "blue");
+      //search.css("color","red");
+      // console.log(str);
+      d(val,page,search);
+    })
+    function d(val=5,page=1,search=''){
+      $("#appendable").html("");
+    $.post("/fetchall",{val,page,search},(data,status)=>{
+      if(status=='success'){
+        $(".spinner-grow").hide(); 
+      }
+      data=data.docs
+      for(i=0;i<data.length;i++){
+        $("#appendable").append(`
+             <tr id=${data[i]._id}>
+              <td id=${data[i]._id}>${data[i]._id}</td>
+              <td id="username${data[i]._id}">${data[i].username}</td>
+              <td id="email${data[i]._id}">${data[i].email}</td>
+              <td id="mobileno${data[i]._id}">${data[i].mobileno}</td>
+              <td>${data[i].gender}</td>
+              <td><button style="background-color: #85dc35;" onclick='deleteRec("${data[i]._id}")' ><i class="material-icons">delete_forever</i></button>
+              <button style="background-color: aqua;" onclick='updateRec(${JSON.stringify(data[i])})' ><i class="material-icons">update </i></button></td>
+             </tr>
+        `)
+         }
+    })
+  }
+d()
+</script>
+<%-include('end')%>

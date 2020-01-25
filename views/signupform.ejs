@@ -1,0 +1,33 @@
+<form action="/dashboard" method="post">
+    <div class="form-group">
+        <label>Username:</label>
+        <input type="text" name="username" id="u" class="form-control text"
+            value="<%= typeof username != 'undefined'? username :''%>" required>
+    </div>
+        <div class="form-group">
+            <label>E-mail:</label>
+            <input type="email" id="e" name="email" class="form-control text"
+                value="<%= typeof email != 'undefined'? email :''%>" required>
+        </div>
+    <div class="form-group">
+        <label>Password:</label>
+        <input type="password" id="p" name="password" class="form-control text"
+            value="<%= typeof password != 'undefined'? password :''%>" required>
+    </div>
+    <div class="form-group">
+        <label>Mobile-no:</label>
+        <input type="tel" id="m" name="mobileno" class="form-control text" id="mobile"
+            value="<%= typeof mobileno != 'undefined'? mobileno:''%>" required>
+    </div>
+    <div class="text form-group">
+        <label>select gender:</label>
+        <select id="gen" class="form-control" name="gender">
+            <option value="male">male</option>
+            <option value="female">female</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" value="submit" class="btn btn-primary" id="sbutton">submit</button>
+        <button type="reset" value="submit" class="btn btn-danger">reset</button>
+    </div>
+</form>

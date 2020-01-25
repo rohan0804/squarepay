@@ -1,0 +1,140 @@
+<%-include('header')%>
+<%-include('navbar')%>
+<body>
+        <form action="/addnewitem" method="POST">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary active">
+                          <input type="radio" name="options" id="option1" autocomplete="off" value="snacks"checked> snacks
+                        </label>
+                        <label class="btn btn-secondary">
+                          <input type="radio" name="options" value="drinks"id="option2" autocomplete="off"> drinks
+                        </label>
+                        <label class="btn btn-secondary">
+                          <input type="radio" name="options" id="option3" value="combos" autocomplete="off">combos
+                        </label>
+                        <label class="btn btn-secondary">
+                                <input type="radio" name="options" id="option3" value="fastfood"autocomplete="off">fast food
+                              </label>
+                      </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">itemname</label>
+                  <input type="text" name="itemname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter item name"> 
+                 </div>
+                  <div class="form-group">
+                  <label for="exampleInputPassword1">Price</label>
+                  <input type="text"name="price" class="form-control" id="exampleInputPassword1" placeholder="Price">
+                </div>
+                <div class="form-group" style="width: 500px;">
+                    <label for="image">upload image:</label>
+                    <input 
+                    class="form-control"
+                    type="file"
+                    name="image"
+                    id="image"
+                    >
+                </div>
+                <button type="submit"  class="btn btn-primary">Submit</button>
+              </form>
+              <div class="card">
+                <div class="card-body">
+                 update available items
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <nav>
+                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link col-lg-3 col-md-3" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true" style="font-size: 30px;">combos<i class="material-icons">combos</i></a>
+                    <a class="nav-item nav-link col-lg-3 col-md-3"   data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"style="font-size: 30px;">snacks<i class="material-icons">snacks</i></a>
+                    <a class="nav-item nav-link col-lg-3 col-md-3"   data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"style="font-size: 30px;">fastfood<i class="material-icons">fastfood</i></a>
+                    <a class="nav-item nav-link col-lg-3 col-md-3" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"style="font-size: 30px;">drinks<i class="material-icons">drinks</i></a>
+                  </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <%for(i=0;i<combos.length;i++){%>
+                       <div class="row">
+                         <div class="col">
+                           <p><%=combos[i].itemname%></p>
+                         </div>
+                         <div class="col">
+                          <div class="form-check">
+                            <input type="checkbox" id='<%-combos[i]._id%>' class="form-check-input" 
+                            <%if(combos[i].isavail){%>
+                              checked
+                              <%}%> 
+                            >
+
+                            <%if(combos[i].isavail){%>
+                              <label class="form-check-label">available</label>
+                              <%}else{%>
+                                <label class="form-check-label">unavailable</label>
+                                <%}%>                          
+                             </div>
+                         </div>
+                       </div>
+                    <%}%>
+                  </div>
+                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <%for(i=0;i<snacks.length;i++){%>
+                      <div class="row">
+                        <div class="col">
+                          <p><%=snacks[i].itemname%></p>
+                        </div>
+                        <div class="col">
+                         <div class="form-check">
+                           <input type="checkbox" id='<%-snacks[i]._id%>' class="form-check-input" 
+                           <%if(snacks[i].isavail){%>
+                            checked
+                             <%}%> 
+                           >
+                           <%if(snacks[i].isavail){%>
+                            <label class="form-check-label">available</label>
+                            <%}else{%>
+                              <label class="form-check-label">unavailable</label>
+                              <%}%> 
+                         </div>
+                        </div>
+                      </div>
+                   <%}%>
+                  </div>
+                  <div class="tab-panel fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <%for(i=0;i<fastfood.length;i++){%>
+                      <div class="row">
+                        <div class="col">
+                          <p><%=fastfood[i].itemname%></p>
+                        </div>
+                        <div class="col">
+                         <div class="form-check">
+                           <input type="checkbox" id='<%-fastfood[i]._id%>' class="form-check-input" 
+                           <%if(fastfood[i].isavail){%>
+                            checked
+                             <%}%> 
+                           >
+                           <%if(fastfood[i].isavail){%>
+                            <label class="form-check-label">available</label>
+                            <%}else{%>
+                              <label class="form-check-label">unavailable</label>
+                              <%}%> 
+                         </div>
+                        </div>
+                      </div>
+                   <%}%>
+                  </div>
+                </div>
+                </div>
+              </div>
+    </body> 
+    <script>
+    $("input[type='checkbox']").click((e)=>{
+      $.post('/updateavail',
+      {
+       id:e.target.id
+      },
+      (data,status)=>{
+          console.log(status);
+      }
+      )
+    });
+    </script>
+    <%-include('end')%>

@@ -1,0 +1,58 @@
+<div class="accordion ptab" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#payhb" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="material-icons">money</i>square one
+                                </button>
+            </h2>
+          </div>
+      
+          <div id="payhb" class="collapse show " aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              <%if(data.isapplied==='0'){%>
+                <button id="getidbutton" type="button" class="btn btn-outline-success">GET CARD  <i class="large material-icons">input</i></button>
+              <%}else{%>
+                <%-include('sqc')%>
+              <%}%>
+            
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <i class="material-icons">credit_card</i>Debit Card
+              </button>
+            </h2>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+    
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+      
+      <script>
+          $(()=>{
+          $('#payment').click(()=>{
+            $('#payhb').collapse('hide');
+          });
+        })
+        $('#getidbutton').click(()=>{
+          $.post('/genid',{id:"<%-data._id%>"},(data,status)=>{
+              notie.alert({position:"bottom",type:"success",time:5,text:data});
+               setTimeout(() => {
+                 location.reload(true)
+               }, 5000);
+          })
+        });
+           </script>

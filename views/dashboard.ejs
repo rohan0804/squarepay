@@ -1,0 +1,70 @@
+<%-include('header')%>
+<script>
+ document.cart=[];
+</script>
+<body>
+  <%-include('cartcard')%>
+    <%-include('navbar')%>
+    <button type="button" class="btn btn-primary"  data-placement="bottom"  title="cart" id="cart" style="border-radius:30px;float: right;margin-right:30px;" data-target="#modal2" data-toggle="modal"><i class="material-icons" style="color:red;font-size:40px;" >add_shopping_cart</i></button>
+    <!-- <button id="cart" "><i class="material-icons " style="color:red;font-size:30px;" >add_shopping_cart</i></button> -->
+    <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link col-lg-6 col-md-6 order" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true" style="font-size: 30px;">Order <i class="material-icons">fastfood</i></a>
+              <a class="nav-item nav-link col-lg-6 col-md-6"  id="payment" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"style="font-size: 30px;">Payment<i class="material-icons">payment</i></a>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"><%-include('ordertab')%></div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"><%-include('paymenttab')%></div>
+          </div> 
+</body>
+<script>
+$(()=>{
+  $('#cart').hide();
+  setInterval(()=>{
+    if(document.cart.length==0){
+      $('#cart').hide();
+    }
+    else{
+      $('#cart').show(); 
+    }
+  },1000)
+
+  $('#cart').click(()=>{
+    $('#pay').text('proceed to pay'+" " + total())
+    $('#tablebody').html('')
+    cart=document.cart
+    for(i=0;i<cart.length;i++){
+      $('#tablebody').append(`
+      <tr id="${cart[i].id}">
+       <td>${i+1}</td>
+       <td>${cart[i].itemname}</td>
+       <td>${cart[i].itemprice}</td>
+       <td>${cart[i].itemqty}</td>
+       <td>${cart[i].totalamt}</td> 
+       <td><button  onclick="delete1('${cart[i].id}')""><i class="material-icons">delete</i></button></td>
+       </tr>
+      `)
+    }
+  })
+});
+
+function total()
+{var total=0
+  cart=document.cart;
+  for(i=0;i<cart.length;i++){
+    total+=Number(cart[i].totalamt)
+  }
+  return total;
+}
+function delete1(id){
+ $(`#${id}`).hide();
+ cart=document.cart;
+ for(i=0;i<cart.length;i++){
+   if(cart[i].id==id){
+     document.cart.splice(i,1);
+   }
+ }
+ $('#pay').text('proceed to pay'+" "+"&#x20B9"+ total())  
+}
+</script>

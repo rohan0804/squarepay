@@ -1,0 +1,80 @@
+<div class="accordion otab" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="material-icons">cake</i>
+              snacks
+            </button>
+            </h2>
+          </div>
+      
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body" >
+              <div class="row">
+                <%for (i=0;i<snacks.length;i++){%>
+                  <%-include('snacks')%>
+                  <%}%>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <i class="material-icons">local_drink</i>drinks
+            </button>
+            </h2>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+              <div class="row">
+                <%for(i=0;i<drinks.length;i++){%>
+                 <%-include('drinks')%>
+                 <%}%>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <i class="material-icons">fastfood</i>fastfood
+                              </button>
+            </h2>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+              <div class="row">
+                <%for(i=0;i<fastfood.length;i++){%>
+                 <%-include('fastfood')%>
+                 <%}%>
+                </div>
+            </div>
+          </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingfour">
+              <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapseThree">
+                      <i class="material-icons">local_dining</i>combos
+                                </button>
+              </h2>
+            </div>
+            <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="row">
+                  <%for(i=0;i<combos.length;i++){%>
+                    <%if(combos[i].isavail){%>
+                   <%-include('combos')%>
+                   <%}%>
+                   <%}%>
+                  </div>
+              </div>
+            </div>
+                </div>
+                </div>
+      <script>
+       $('#collapseOne').collapse('hide');
+      </script>

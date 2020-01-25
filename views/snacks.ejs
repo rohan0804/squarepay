@@ -1,0 +1,70 @@
+  
+<div class="card mb-3 column " style="max-width: 540px;margin-right:50px;border-bottom: 2px solid black">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="<%=snacks[i].imgpath%>" class="card-img" alt="img" style="height: 159px;">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title" id="itemname<%=snacks[i]._id%>"><%=snacks[i].itemname%></h5>
+        <p class="card-text" id="itemprice<%=snacks[i]._id%>"><%=snacks[i].price%><p>&#x20B9</p></p>
+        <div class="btn-group" role="group" aria-label="Basic example" style="height: 35px;">
+              <button style="background-color: rgb(20, 145, 184)"  id="plus<%=snacks[i]._id%>"type="button" class="btn btn-secondary"><i class="material-icons">exposure_plus_1</i></button>
+              <input disabled="true" type="text" id="qty<%=snacks[i]._id%>" style="width:50px;text-align:center;">
+              <button style="background-color: blue" type="button" id="minus<%=snacks[i]._id%>" class="btn btn-secondary" style="color: aqua"><i class="material-icons">exposure_neg_1</i></button>
+            </div>
+            <br>
+            <p id="amt<%=snacks[i]._id%>" >Net Amt:0</p>
+      </div>
+    </div>
+    <button id="cartbtn<%=snacks[i]._id%>"><i class="material-icons " style="color:red;font-size:30px;" >add_shopping_cart</i></button>
+  </div>
+  <script>
+   $("#qty<%=snacks[i]._id%>").val('0');
+   $('#plus<%=snacks[i]._id%>').click(()=>{
+      val=Number($("#qty<%=snacks[i]._id%>").val());
+      val++;
+      $("#qty<%=snacks[i]._id%>").val(val);
+      $("#amt<%=snacks[i]._id%>").text("Net Amt:"+val*Number($('#itemprice<%=snacks[i]._id%>').text()));
+   });
+   $('#minus<%=snacks[i]._id%>').click(()=>{
+      val=Number($("#qty<%=snacks[i]._id%>").val());
+      if(val<=0){
+       return    
+      }
+      val--;
+      $("#qty<%=snacks[i]._id%>").val(val);
+      $("#amt<%=snacks[i]._id%>").text("net amt:"+val*Number($('#itemprice<%=snacks[i]._id%>').text()));
+   });
+   $("#cartbtn<%=snacks[i]._id%>").click(()=>{
+  
+     itemprice='<%=snacks[i].price%>',
+     itemname="<%=snacks[i].itemname%>",
+     itemqty=$("#qty<%=snacks[i]._id%>").val(),
+     totalamt=$("#amt<%=snacks[i]._id%>").text().split(':')[1]
+   var obj={
+    itemprice:'<%=snacks[i].price%>',
+     itemname:"<%=snacks[i].itemname%>",
+     itemqty:$("#qty<%=snacks[i]._id%>").val(),
+     totalamt:$("#amt<%=snacks[i]._id%>").text().split(':')[1],
+     id:'<%=snacks[i]._id%>'
+   }
+     if(itemqty=='0'){
+      notie.alert({time:2, type: "error", text:'atleast add one item ' ,position:'bottom'})
+      return; 
+    }
+    cart=document.cart
+    check=cart.find(items=>items.itemname===itemname)
+    if(check){
+      notie.alert({time:2, type: "error", text:'item has already added in the cart!!' ,position:'bottom'})
+      return;
+     }
+     document.cart.push(obj);
+     notie.alert({time:2, type: "error", text:'added successfully' ,position:'bottom'})
+
+  console.log(document.cart);
+   });
+
+  </script>
+</div>
+

@@ -1,0 +1,105 @@
+*{
+    margin:0;
+    padding: 0;
+    font-family: Century 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+header{
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/images/1.jpg');
+     /* height: 100vh;  */
+     height: 158px;
+    /* background-size: cover; */
+    /* background-position: center; */
+}
+ul{
+    float:right;
+    list-style-type: none;
+    margin-top:25px; 
+}
+ul li{
+    display: inline-block;
+}
+ul li a{
+    text-decoration: none;
+    color: white;
+    padding:5px 20px;
+    border:1px solid transparent;
+    transition: 0.6s ease;
+}
+ul li a:hover{
+    background-color: white;
+    color: black;
+}
+
+.main{
+    /* max-width: 1200px; */
+    margin: auto;
+}
+ul li.active a{
+    background-color: white;
+    color: black;
+}
+.title{
+    position: absolute;
+    top:50%;
+    left:50%;
+   transform: translate(-50%,-50%);
+}
+.title span{
+    color: white;
+    font-weight: 100;
+    display: block;
+    text-transform: uppercase;
+}
+.text1{
+    font-size: 60px;
+    animation: text 2s 1;
+}
+.button{
+    position: absolute;
+    top:65%;
+    left:50%;
+   transform: translate(-50%,-50%);
+   margin-top: 20px;
+}
+.button a{
+    border:2px solid white;
+    padding:10px 30px;
+    color:white;
+    text-decoration:none; 
+    font-size:20px;
+    transition: 0.6s ease;
+}
+.btn:hover{
+    background-color: white;
+    color: black;
+}
+.classh1 h1{
+ position:absolute;
+ top:40px;
+ /* background-color: white; */
+    color: white;
+    animation: animate 1s linear forwards;
+}
+@keyframes animate{
+0%{
+    opacity: 0;
+    /* transform: rotateY(90deg); */
+    filter: blur(5px);
+ }
+ 100%{
+    opacity: 1;
+    transform: rotateY(0deg);
+    filter:blur(0);
+ }
+}
+.text2{
+    font-size:30px;
+    margin-left: 138px;
+}
+@keyframes text{
+    0%{
+        color: black;
+        margin-bottom: -60px;
+    }
+}
+

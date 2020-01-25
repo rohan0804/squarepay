@@ -1,0 +1,22 @@
+[
+    {
+        "name":"rajmah",
+        "price":50,
+        "img":"/menuimages/rajmah.jpeg"
+    },
+    {
+        "name":"rice",
+        "price":10,
+        "img":"/menuimages/rice.jpeg"
+    },
+    {
+        "name":"pizza",
+        "price":100,
+        "img":"/menuimages/pizza.jpg"
+    },
+    {
+        "name":"lassi",
+        "price":35,
+        "img":"/menuimages/lassi.jpg"
+    }
+]

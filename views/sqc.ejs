@@ -1,0 +1,78 @@
+<div class="row">
+<div class="col">
+<div class="card" style="width: 18rem;">
+        <div class="card-body" style="border-bottom: 2px solid grey">
+        <center><img src="lol.jpg" alt="img"></center>  
+        <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;color: golde"><%-data.sqc.id%></p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body" style="border-bottom: 2px solid grey">
+          <div class="row">
+            <div class="col">
+              <h5>Name On Card: </h5> 
+            </div>
+            <div class="col">
+              <p style="font-size:20px;"><%=data.username%></p>  
+             </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col">
+                <h5> Mobile No: </h5>
+            </div>
+            <div class="col" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+              <%-data.mobileno%>  
+             </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col">
+              <h5>Card id:</h5>   
+            </div>
+              <div class="col" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;color: goldenrod">
+                  <%-data.sqc.id%>   
+              </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col">
+              <h5>Current balance:</h5>   
+            </div>
+              <div class="col" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;color: goldenrod">
+                  <%-data.sqc.balance%>   
+              </div>
+          </div>
+          <br>
+          <div class="row">
+            <form action="/successpayment" method="POST">
+              <script
+                  src="https://checkout.razorpay.com/v1/checkout.js"
+                  data-key="rzp_test_JipGHxHUCexYFB"
+                  data-amount="100" 
+                  data-currency="INR"
+                  data-order_id="<%-id%>"
+                  data-buttontext="Pay with Razorpay"
+                  data-name="square one"
+                  data-description="recharge for your card"
+                  data-image="/images/logoimage.png"
+                  data-prefill.name="<%=data.username%>"
+                  data-prefill.email="<%=data.email%>"
+                  data-prefill.contact="<%=data.mobileno%>"
+                  data-theme.color="#F37254"
+              ></script>
+
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter amount" name="amt">
+
+              <input type="hidden" value="<%-data._id%>" name="iduser">
+              </form>
+            <!-- <button type="button" class="btn btn-outline-primary" style="color:purple;font-size:20px;">Recharge Your Card<i class="material-icons">credit_card</i></button> -->
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>

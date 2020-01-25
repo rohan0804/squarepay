@@ -1,0 +1,21 @@
+<%-include('signinsignupheader')%>
+ <body class="body" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/images/1.jpg');">
+        <%-include('navbar')%>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-3" id="form">
+                <center><b class="heading">Create An account!</b></center>
+            <%-include('signupform')%>
+            </div>
+        </div>
+    </div>
+    </div>
+    <input type="text" value=<%-error%> id="not" hidden>
+ </body> 
+<script>
+error=$("#not").val()
+if(error=="1"){
+    notie.alert({time:2, type: "error", text: 'username is already taken' ,position:'bottom'})
+}
+     </script>
+    <%- include('end') %>
